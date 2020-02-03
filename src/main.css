@@ -1,0 +1,100 @@
+/*
+  elm-hot creates an additional div wrapper around the app to make HMR possible.
+  This could break styling in development mode if you are using Elm UI.
+
+  More context in the issue:
+    https://github.com/halfzebra/create-elm-app/issues/320
+*/
+[data-elm-hot="true"] {
+  height: inherit;
+}
+
+body {
+  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  text-align: center;
+  color: #293c4b;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+img {
+  margin: 20px 0;
+  max-width: 200px;
+}
+
+.qwixx-app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.qwixx-container {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  width: 800px;
+}
+
+.qwixx-row {
+  display: flex;
+  flex: 1;
+  margin: 10px;
+}
+
+.red {
+  background-color: red
+}
+
+.yellow {
+  background-color: yellow
+}
+
+.green {
+  background-color: green
+}
+
+.blue {
+  background-color: blue
+}
+
+.black {
+  background-color: black
+}
+
+.qwixx-box {
+  background-color: lightgray;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 10px 5px 10px 5px;
+  position: relative;
+}
+
+.qwixx-value {
+  align-self: center;
+  color: gray;
+  font-size: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.checked {
+  position: absolute;
+  visibility: visible;
+  font-size: 48px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.not-checked {
+  position: absolute;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+}
