@@ -16,22 +16,16 @@ body {
   color: #293c4b;
 }
 
-h1 {
-  font-size: 30px;
-}
-
-img {
-  margin: 20px 0;
-  max-width: 200px;
-}
-
 .qwixx-app {
   display: flex;
+  justify-content: center;
   height: 100%;
   width: 100%;
+  font-size: 32px;
 }
 
 .qwixx-container {
+  margin: 20px;
   background-color: lightgray;
   display: flex;
   flex-direction: column;
@@ -64,6 +58,41 @@ img {
   background-color: black
 }
 
+.red-border {
+  border-style: solid;
+  border-color: red;
+  border-width: 5px;
+  border-radius: 5px;
+}
+
+.yellow-border {
+  border-style: solid;
+  border-color: yellow;
+  border-width: 5px;
+  border-radius: 5px;
+}
+
+.green-border {
+  border-style: solid;
+  border-color: green;
+  border-width: 5px;
+  border-radius: 5px;
+}
+
+.blue-border {
+  border-style: solid;
+  border-color: blue;
+  border-width: 5px;
+  border-radius: 5px;
+}
+
+.black-border {
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  border-radius: 5px;
+}
+
 .qwixx-box {
   background-color: lightgray;
   flex: 1;
@@ -76,8 +105,12 @@ img {
 .qwixx-value {
   align-self: center;
   color: gray;
-  font-size: 32px;
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.qwixx-final-value {
+  align-self: center;
+  color: black;
+  font-weight: bold;
 }
 
 .checked {
@@ -96,4 +129,21 @@ img {
   visibility: hidden;
   height: 100%;
   width: 100%;
+}
+
+.lock {
+  height: 32px;
+  width: 32px;
+}
+
+.qwixx-score-value {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 10px 5px 10px 5px;
+}
+
+.operator {
+  display: flex;
+  align-items: center;
 }

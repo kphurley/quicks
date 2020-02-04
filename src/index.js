@@ -1,9 +1,11 @@
 import './main.css';
+import lockSvg from './lock.svg';
 import { Elm } from './Main.elm';
 import * as serviceWorker from './serviceWorker';
 
 Elm.Main.init({
-  node: document.getElementById('root')
+  node: document.getElementById('root'),
+  lockSvg
 });
 
 // If you want your app to work offline and load faster, you can change
