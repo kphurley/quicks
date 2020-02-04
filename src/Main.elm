@@ -35,7 +35,7 @@ type alias Model =
   }
 
 init : () -> ( Model, Cmd msg )
-init flags =
+init () =
   (
     { redCheckedStates  = Array.initialize 12 (always False)
     , redScore = 0
@@ -51,17 +51,6 @@ init flags =
     Cmd.none
   )
 
--- encodeModel : Model -> Value
--- encodeModel model =
---   E.object
---     [ ( "red", (E.list E.bool (Array.toList model.redCheckedStates)))
---     , ( "yellow", (E.list E.bool (Array.toList model.yellowCheckedStates)))
---     , ( "green", (E.list E.bool (Array.toList model.greenCheckedStates)))
---     , ( "blue", (E.list E.bool (Array.toList model.blueCheckedStates)))
---     ]
-
--- port jsonConsole : Value -> Cmd msg
-
 subscriptions : Model -> Sub Msg
 subscriptions _ =
   Sub.batch []
@@ -69,52 +58,62 @@ subscriptions _ =
 -- UPDATE
 
 type Msg
-  = UpdateRed Int Bool
-  | UpdateYellow Int Bool
-  | UpdateGreen Int Bool
-  | UpdateBlue Int Bool
-
+  = UpdateCheckedState Int Bool String
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    UpdateRed idx isChecked ->
-      (
-        { model | redCheckedStates = Array.set idx isChecked model.redCheckedStates }
-        , Cmd.none
-      )
-    UpdateYellow idx isChecked ->
-      (
-        { model | yellowCheckedStates = Array.set idx isChecked model.yellowCheckedStates }
-        , Cmd.none
-      )
-    UpdateGreen idx isChecked ->
-      (
-        { model | greenCheckedStates = Array.set idx isChecked model.greenCheckedStates }
-        , Cmd.none
-      )
-    UpdateBlue idx isChecked ->
-      (
-        { model | blueCheckedStates = Array.set idx isChecked model.blueCheckedStates }
-        , Cmd.none
-      )
+    UpdateCheckedState idx isChecked color ->
+      case color of
+        "red" ->
+          (
+            { model | redCheckedStates = Array.set idx isChecked model.redCheckedStates }
+            , Cmd.none
+          )
+        "yellow" ->
+          (
+            { model | yellowCheckedStates = Array.set idx isChecked model.yellowCheckedStates }
+            , Cmd.none
+          )
+        "green" ->
+          (
+            { model | greenCheckedStates = Array.set idx isChecked model.greenCheckedStates }
+            , Cmd.none
+          )
+        "blue" ->
+          (
+            { model | blueCheckedStates = Array.set idx isChecked model.blueCheckedStates }
+            , Cmd.none
+          )
+        _ -> ( model, Cmd.none )
+
+getValueElement: Int -> Html Msg
+getValueElement idx =
+  if idx == 11 then 
+    img [src "lock.svg"] []
+  else
+    text (String.fromInt (idx + 2))
 
 -- VIEW
-rowBox: (Int, Bool) -> Html Msg
-rowBox (idx, isChecked) =
-    div 
-      [ class "qwixx-box", onClick (UpdateRed idx (not isChecked)) ]
-      [ div [ 
-          classList [ ("checked", isChecked), ("not-checked", not isChecked) ]
-        ]
-        [ text "X" ]
-      , div [ class "qwixx-value" ] [ text (String.fromInt (idx + 2)) ]
+rowBox: (Int, Bool, String) -> Html Msg
+rowBox (idx, isChecked, color) =
+  div 
+    [ class "qwixx-box", onClick (UpdateCheckedState idx (not isChecked) color) ]
+    [ div [ 
+        classList [ ("checked", isChecked), ("not-checked", not isChecked) ]
       ]
+      [ text "X" ]
+    , div [ class "qwixx-value" ] [ getValueElement idx ]
+    ]
+
+rowMapper : (Int, Bool) -> String -> (Int, Bool, String)
+rowMapper (idx, b) str =
+  (idx, b, str)
 
 row: Array Bool -> String -> Html Msg
 row rowArray color =
     div [ class "qwixx-row", class color ]
-        (List.map rowBox (Array.toIndexedList rowArray))
+      (List.map rowBox (List.map (\tup -> rowMapper tup color) (Array.toIndexedList rowArray)))
 
 view : Model -> Html Msg
 view model =
@@ -126,6 +125,7 @@ view model =
       , row model.yellowCheckedStates "yellow"
       , row model.greenCheckedStates "green"
       , row model.blueCheckedStates "blue"
+      , row model.penaltyStates "black"
       , row model.penaltyStates "black"
       ]
     ]

@@ -42,7 +42,6 @@ img {
 .qwixx-row {
   display: flex;
   flex: 1;
-  margin: 10px;
 }
 
 .red {
