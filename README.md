@@ -1,3 +1,7 @@
+# Scoresheet for Qwixx
+
+[See it in action here!](https://kphurley.github.io/quicks)
+
 # Elm App
 
 This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).
