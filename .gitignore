@@ -1,5 +1,7 @@
 # Distribution
-build/
+# Committing this as we're using the subtree method to publish as described here:
+# https://gist.github.com/cobyism/4730490
+# build/
 
 # elm-package generated files
 elm-stuff
