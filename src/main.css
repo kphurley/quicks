@@ -10,7 +10,8 @@
 }
 
 body {
-  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Source Sans Pro", "Trebuchet MS", "Lucida Grande",
+    "Bitstream Vera Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   text-align: center;
   color: #293c4b;
@@ -29,7 +30,7 @@ body {
   background-color: lightgray;
   display: flex;
   flex-direction: column;
-  height: 450px;
+  height: 350px;
   width: 800px;
 }
 
@@ -39,23 +40,23 @@ body {
 }
 
 .red {
-  background-color: red
+  background-color: red;
 }
 
 .yellow {
-  background-color: yellow
+  background-color: yellow;
 }
 
 .green {
-  background-color: green
+  background-color: green;
 }
 
 .blue {
-  background-color: blue
+  background-color: blue;
 }
 
 .black {
-  background-color: black
+  background-color: black;
 }
 
 .red-border {
@@ -102,6 +103,11 @@ body {
   position: relative;
 }
 
+.qwixx-row.penalty .qwixx-box {
+  border-style: solid;
+  border-color: black;
+}
+
 .qwixx-value {
   align-self: center;
   color: gray;
@@ -116,12 +122,13 @@ body {
 .checked {
   position: absolute;
   visibility: visible;
-  font-size: 48px;
   font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
   color: black;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .not-checked {
