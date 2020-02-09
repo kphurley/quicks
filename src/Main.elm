@@ -86,7 +86,7 @@ update msg model =
                     ( { model | blueCheckedStates = Array.set idx isChecked model.blueCheckedStates }
                     , Cmd.none
                     )
-                
+
                 "penalty" ->
                     ( { model | penaltyStates = Array.set idx isChecked model.penaltyStates }
                     , Cmd.none
@@ -105,11 +105,11 @@ getValueElement idx color =
             ]
             []
 
+    else if color == "penalty" then
+        text "P"
+
     else
-        if color == "penalty" then
-            text "P"
-        else
-            text (String.fromInt (idx + 2))
+        text (String.fromInt (idx + 2))
 
 
 
@@ -198,26 +198,20 @@ scoreRow model =
         [ div [ class "qwixx-box red-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "red")) ]
             ]
-        -- , div [ class "operator" ] [ text "+" ]
         , div [ class "qwixx-box yellow-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "yellow")) ]
             ]
-        -- , div [ class "operator" ] [ text "+" ]
         , div [ class "qwixx-box green-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "green")) ]
             ]
-        -- , div [ class "operator" ] [ text "+" ]
         , div [ class "qwixx-box blue-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "blue")) ]
             ]
-        -- , div [ class "operator" ] [ text "-" ]
         , div [ class "qwixx-box black-border" ]
             [ div [ class "qwixx-value" ]
-                [
-                    row model.penaltyStates "penalty"
+                [ row model.penaltyStates "penalty"
                 ]
             ]
-        -- , div [ class "operator" ] [ text "=" ]
         , div [ class "qwixx-box" ]
             [ div [ class "qwixx-final-value" ] [ text (String.fromInt (sumScores model)) ]
             ]
