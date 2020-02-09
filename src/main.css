@@ -10,7 +10,8 @@
 }
 
 body {
-  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Source Sans Pro", "Trebuchet MS", "Lucida Grande",
+    "Bitstream Vera Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   text-align: center;
   color: #293c4b;
@@ -39,23 +40,23 @@ body {
 }
 
 .red {
-  background-color: red
+  background-color: red;
 }
 
 .yellow {
-  background-color: yellow
+  background-color: yellow;
 }
 
 .green {
-  background-color: green
+  background-color: green;
 }
 
 .blue {
-  background-color: blue
+  background-color: blue;
 }
 
 .black {
-  background-color: black
+  background-color: black;
 }
 
 .red-border {
@@ -121,9 +122,7 @@ body {
 .checked {
   position: absolute;
   visibility: visible;
-  /* font-size: 48px; */
   font-family: Arial, Helvetica, sans-serif;
-  /* text-align: center; */
   color: black;
   height: 100%;
   width: 100%;
