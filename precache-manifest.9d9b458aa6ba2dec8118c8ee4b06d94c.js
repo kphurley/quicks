@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://kphurley.github.io/quicks/favicon.ico"
   },
   {
-    "revision": "cb35d7d825425dd54ea32c6bc290969f",
+    "revision": "7fc767fc83d4671ff749624731668c27",
     "url": "https://kphurley.github.io/quicks/index.html"
   },
   {
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://kphurley.github.io/quicks/manifest.json"
   },
   {
-    "revision": "ee11be0bdf10b712b775",
-    "url": "https://kphurley.github.io/quicks/static/css/main.c75ef031.chunk.css"
+    "revision": "70d9d57792d676ef3460",
+    "url": "https://kphurley.github.io/quicks/static/css/main.2bf42eeb.chunk.css"
   },
   {
-    "revision": "ee11be0bdf10b712b775",
-    "url": "https://kphurley.github.io/quicks/static/js/main.ee11be0b.chunk.js"
+    "revision": "70d9d57792d676ef3460",
+    "url": "https://kphurley.github.io/quicks/static/js/main.70d9d577.chunk.js"
   },
   {
     "revision": "86f457fb1e148148616c",
