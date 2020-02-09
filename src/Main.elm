@@ -86,13 +86,18 @@ update msg model =
                     ( { model | blueCheckedStates = Array.set idx isChecked model.blueCheckedStates }
                     , Cmd.none
                     )
+                
+                "penalty" ->
+                    ( { model | penaltyStates = Array.set idx isChecked model.penaltyStates }
+                    , Cmd.none
+                    )
 
                 _ ->
                     ( model, Cmd.none )
 
 
-getValueElement : Int -> Html Msg
-getValueElement idx =
+getValueElement : Int -> String -> Html Msg
+getValueElement idx color =
     if idx == 11 then
         img
             [ class "lock"
@@ -101,7 +106,10 @@ getValueElement idx =
             []
 
     else
-        text (String.fromInt (idx + 2))
+        if color == "penalty" then
+            text "P"
+        else
+            text (String.fromInt (idx + 2))
 
 
 
@@ -116,7 +124,7 @@ rowBox ( idx, isChecked, color ) =
             [ classList [ ( "checked", isChecked ), ( "not-checked", not isChecked ) ]
             ]
             [ text "X" ]
-        , div [ class "qwixx-value" ] [ getValueElement idx ]
+        , div [ class "qwixx-value" ] [ getValueElement idx color ]
         ]
 
 
@@ -167,7 +175,9 @@ computeScore model color =
         "blue" ->
             scoreMap (Array.length (Array.filter identity model.blueCheckedStates))
 
-        -- to handle : "penalty"
+        "penalty" ->
+            Array.length (Array.filter identity model.penaltyStates) * 5
+
         _ ->
             0
 
@@ -188,23 +198,26 @@ scoreRow model =
         [ div [ class "qwixx-box red-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "red")) ]
             ]
-        , div [ class "operator" ] [ text "+" ]
+        -- , div [ class "operator" ] [ text "+" ]
         , div [ class "qwixx-box yellow-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "yellow")) ]
             ]
-        , div [ class "operator" ] [ text "+" ]
+        -- , div [ class "operator" ] [ text "+" ]
         , div [ class "qwixx-box green-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "green")) ]
             ]
-        , div [ class "operator" ] [ text "+" ]
+        -- , div [ class "operator" ] [ text "+" ]
         , div [ class "qwixx-box blue-border" ]
             [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "blue")) ]
             ]
-        , div [ class "operator" ] [ text "-" ]
+        -- , div [ class "operator" ] [ text "-" ]
         , div [ class "qwixx-box black-border" ]
-            [ div [ class "qwixx-value" ] [ text (String.fromInt (computeScore model "penalty")) ]
+            [ div [ class "qwixx-value" ]
+                [
+                    row model.penaltyStates "penalty"
+                ]
             ]
-        , div [ class "operator" ] [ text "=" ]
+        -- , div [ class "operator" ] [ text "=" ]
         , div [ class "qwixx-box" ]
             [ div [ class "qwixx-final-value" ] [ text (String.fromInt (sumScores model)) ]
             ]
@@ -221,7 +234,6 @@ view model =
             , row model.yellowCheckedStates "yellow"
             , rowReversed model.greenCheckedStates "green"
             , rowReversed model.blueCheckedStates "blue"
-            , row model.penaltyStates "black"
             , scoreRow model
             ]
         ]
